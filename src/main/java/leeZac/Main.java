@@ -1,10 +1,5 @@
 package leeZac;
 
-import leeZac.oldStuff.Apples;
-import leeZac.oldStuff.Bread;
-import leeZac.oldStuff.Cookies;
-import leeZac.oldStuff.Milk;
-
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.regex.Matcher;
@@ -17,12 +12,6 @@ public class Main {
 
     String output = "";
     int totalErrors = 0;
-
-
-    Milk milk = new Milk();
-    Bread bread = new Bread();
-    Cookies cookies = new Cookies();
-    Apples apples = new Apples();
 
     public String readRawDataToString() throws Exception{
         Path path = Paths.get(ClassLoader.getSystemResource("RawData.txt").toURI());
