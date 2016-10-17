@@ -1,4 +1,4 @@
-package leeZac;
+package leeZac.oldStuff;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -80,8 +80,5 @@ public class Apples {
         }
         outputString += minus + "\n";
         return outputString;
-
     }
-
-
 }

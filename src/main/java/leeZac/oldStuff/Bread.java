@@ -1,4 +1,4 @@
-package leeZac;
+package leeZac.oldStuff;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,16 +9,16 @@ import java.util.regex.Pattern;
 
 /*** Created by zaclee on 10/17/16. ***/
 
-public class Milk {
+public class Bread {
 
-    final String item = "Milk";
+    final String item = "Bread";
+
     String[] stringArray;
     String stringPrices = "";
     Map<String, Integer> mapOfPrices = new HashMap<String, Integer>();
     String outputString = "";
     String[] priceStringArray;
     List<String> listOfPrices = new ArrayList<String>();
-    List<String> noErrorList = new ArrayList<String>();
     private int errors = 0;
 
     public int getErrors() {
@@ -26,7 +26,7 @@ public class Milk {
     }
 
     public int countTotal(String str) {
-        String regex = "(m|M)..(k|K)";
+        String regex = "(b|B)...(d|D)";
         Pattern p1 = Pattern.compile(regex);
         Matcher m = p1.matcher(str);
         int count = 0;
@@ -37,7 +37,7 @@ public class Milk {
     }
 
     public List<String> makeListOfPrices(String str) {
-        String regex = "((m|M)..(k|K))([;:, @, ^, *, %])(p|P)...(e|E)([;:, @, ^, *, %])";
+        String regex = "((b|B)...(d|D))([;:, @, ^, *, %])(p|P)...(e|E)([;:, @, ^, *, %])";
         Pattern p1 = Pattern.compile(regex);
         Matcher m = p1.matcher(str);
         while(m.find()) {
@@ -46,20 +46,6 @@ public class Milk {
             listOfPrices.add(price);
         }
         return listOfPrices;
-    }
-
-    public List<String> removeErrorsInList(List<String> listOfStrings) {
-        String regex = "(\\d\\.\\d\\d)";
-        Pattern p1 = Pattern.compile(regex);
-        Matcher m = p1.matcher(listOfStrings.toString());
-        String string = listOfStrings.toString();
-        int count = 0;
-        while(m.find()) {
-            count++;
-            noErrorList.add(string.substring(m.start(),m.end()));
-        }
-        errors = listOfStrings.size() - noErrorList.size();
-        return noErrorList;
     }
 
     public Map<String,Integer> makeMapOfPrices(List<String> listOfPrices) {
@@ -78,22 +64,17 @@ public class Milk {
 
     public String makeOutputString(String str) {
 
-        makeMapOfPrices(removeErrorsInList(makeListOfPrices(str)));
-
+        makeMapOfPrices(makeListOfPrices((str)));
         String equals = "============     ==============";
         String minus ="------------     -------------- \n";
 
-        outputString = String.format("%s %6s %10s %s", "name:", item, "seen: ", noErrorList.size() + " times \n");
+        outputString = String.format("%s %6s %10s %s", "name:", item, "seen: ", countTotal(str) + " times \n");
         outputString += String.format(equals + "\n");
 
         for(String string : mapOfPrices.keySet()) {
             outputString += String.format("%s %5s %10s %s", "Price:", string, "seen: ", mapOfPrices.get(string) + " times \n");
-            outputString += String.format(minus);
         }
-        outputString += "\n";
-
+        outputString += minus + "\n";
         return outputString;
-
     }
-
 }
