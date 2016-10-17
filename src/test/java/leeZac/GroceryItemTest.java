@@ -86,12 +86,34 @@ public class GroceryItemTest {
     @Test
     public void convertToRegexExp() {
         GroceryItem groceryItem2 = new GroceryItem("Apple");
-        System.out.println(groceryItem2.regex);
+        String expected = "((a|A)...(e|E))([;:, @, ^, *, %])(p|P)...(e|E)([;:, @, ^, *, %])";
+        String actual = groceryItem2.regex;
+        Assert.assertEquals("the regex should be this for this input",expected,actual);
     }
 
+    @Test
+    public void convertToRegexExp2() {
+        GroceryItem groceryItem2 = new GroceryItem("Bread");
+        String expected = "((b|B)...(d|D))([;:, @, ^, *, %])(p|P)...(e|E)([;:, @, ^, *, %])";
+        String actual = groceryItem2.regex;
+        Assert.assertEquals("the regex should be this for this input",expected,actual);
+    }
 
+    @Test
+    public void convertToRegexExp3() {
+        GroceryItem groceryItem2 = new GroceryItem("Cookies");
+        String expected = "((c|C).....(s|S))([;:, @, ^, *, %])(p|P)...(e|E)([;:, @, ^, *, %])";
+        String actual = groceryItem2.regex;
+        Assert.assertEquals("the regex should be this for this input",expected,actual);
+    }
 
-
+    @Test
+    public void convertToRegexExp4() {
+        GroceryItem groceryItem2 = new GroceryItem("milk");
+        String expected = "((m|M)..(k|K))([;:, @, ^, *, %])(p|P)...(e|E)([;:, @, ^, *, %])";
+        String actual = groceryItem2.regex;
+        Assert.assertEquals("the regex should be this for this input",expected,actual);
+    }
 
 }
 

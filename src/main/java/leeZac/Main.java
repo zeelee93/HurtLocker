@@ -20,7 +20,7 @@ public class Main {
 
     public String makeErrorMessage(String str) {
         totalErrors = findErrors(str);
-        String message = String.format("%s %16s %s", "Errors", "seen: ", totalErrors + " times");
+        String message = String.format("%s %17s %s", "Errors", "seen: ", totalErrors + " times");
         return message;
     }
 
