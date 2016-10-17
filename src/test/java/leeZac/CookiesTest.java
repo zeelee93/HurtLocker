@@ -35,36 +35,27 @@ public class CookiesTest {
         int num = cookies.countTotal(jsonString);
         int expected = 8;
         int actual = num;
-        Assert.assertEquals("total times bread was seen in string", expected,actual);
+        Assert.assertEquals("total times cookies was seen in string", expected,actual);
     }
 
     @Test
-    public void getStringOfPricesTest() {
-        String stringPrices = cookies.getStringOfPrices(jsonString);
-        System.out.println(stringPrices);
-        Assert.assertTrue(stringPrices instanceof String);
-    }
-
-    @Test
-    public void getPriceStringArrayTest() {
-        priceStringArray = cookies.getStringPriceArray(cookies.getStringOfPrices(jsonString));
-        for(String string : priceStringArray) {
-            System.out.println(string);
-        }
-        Assert.assertTrue(priceStringArray instanceof String[]);
+    public void makeListOfPricesTest() {
+        int expected = 8;
+        int actual = cookies.makeListOfPrices(jsonString).size();
+        Assert.assertEquals("should have 6 prices",expected,actual);
     }
 
     @Test
     public void makeMapOfPricesTest() {
-        mapOfPrices = cookies.makeMapOfPrices(cookies.getStringPriceArray(cookies.getStringOfPrices(jsonString)));
+        mapOfPrices = cookies.makeMapOfPrices(cookies.makeListOfPrices(jsonString));
         System.out.println(mapOfPrices);
         Assert.assertTrue(mapOfPrices instanceof Map);
     }
 
     @Test
     public void OutputTest() {
-        cookies.makeOutputString(jsonString);
-        System.out.println(outputString);
+        String str = cookies.makeOutputString(jsonString);
+        System.out.println(str);
         Assert.assertTrue(outputString instanceof String);
     }
 

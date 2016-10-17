@@ -22,7 +22,6 @@ public class AppleTest {
     String jsonString;
 
 
-
     @Before
     public void setup() {
         stringManipulator = new StringManipulator();
@@ -38,6 +37,12 @@ public class AppleTest {
         Assert.assertEquals("total times bread was seen in string", expected,actual);
     }
 
+    @Test
+    public void makeListOfPricesTest() {
+        int expected = 4;
+        int actual = apples.makeListOfPrices(jsonString).size();
+        Assert.assertEquals("should have 4 prices",expected,actual);
+    }
 
     @Test
     public void makeMapOfPricesTest() {

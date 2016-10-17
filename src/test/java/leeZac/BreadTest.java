@@ -13,10 +13,10 @@ public class BreadTest {
 
     StringManipulator stringManipulator = new StringManipulator();
     String[] stringArray;
-    String stringBreadPrices = "";
-    Map<String, Integer> mapOfBreadPrices = new HashMap<String, Integer>();
-    String breadOutputString = "";
-    String[] breadPriceStringArray;
+    String stringPrices = "";
+    Map<String, Integer> mapOfPrices = new HashMap<String, Integer>();
+    String outputString = "";
+    String[] priceStringArray;
 
 
     Bread bread;
@@ -32,7 +32,7 @@ public class BreadTest {
     }
 
     @Test
-    public void totalBreadCounter() {
+    public void countTotalTest() {
         int num = bread.countTotal(jsonString);
         int expected = 6;
         int actual = num;
@@ -40,33 +40,24 @@ public class BreadTest {
     }
 
     @Test
-    public void getStringOfBreadPricesTest() {
-        String stringOfBreadPrices = bread.getStringOfPrices(jsonString);
-        System.out.println(stringBreadPrices);
-        Assert.assertTrue(stringBreadPrices instanceof String);
-    }
-
-    @Test
-    public void getStringBreadPriceArrayTest() {
-        String[] stringBreadPriceArray = bread.getStringPriceArray(bread.getStringOfPrices(jsonString));
-        for(String string : stringBreadPriceArray) {
-            System.out.println(string);
-        }
-        Assert.assertTrue(stringBreadPriceArray instanceof String[]);
+    public void makeListOfPricesTest() {
+        int expected = 6;
+        int actual = bread.makeListOfPrices(jsonString).size();
+        Assert.assertEquals("should have 6 prices",expected,actual);
     }
 
     @Test
     public void makeMapOfPricesTest() {
-        mapOfBreadPrices = bread.makeMapOfPrices(bread.getStringPriceArray(bread.getStringOfPrices(jsonString)));
-        System.out.println(mapOfBreadPrices);
-        Assert.assertTrue(mapOfBreadPrices instanceof Map);
+        mapOfPrices = bread.makeMapOfPrices(bread.makeListOfPrices(jsonString));
+        System.out.println(mapOfPrices);
+        Assert.assertTrue(mapOfPrices instanceof Map);
     }
 
     @Test
-    public void milkOutputTest() {
-        bread.makeOutputString(jsonString);
-        System.out.println(breadOutputString);
-        Assert.assertTrue(breadOutputString instanceof String);
+    public void OutputTest() {
+        String str = bread.makeOutputString(jsonString);
+        System.out.println(str);
+        Assert.assertTrue(outputString instanceof String);
     }
 
 

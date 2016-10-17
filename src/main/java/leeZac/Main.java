@@ -21,24 +21,29 @@ public class Main {
         return new String(readAllBytes(get(path.toUri())));
     }
 
-//    public String makeOutput(String string) {
-//        output += milk.makeOutputString(string);
-//        output += bread.makeOutputString(string);
-//        output += cookies.makeOutputString(string);
-//        output += apples.makeOutputString(string);
-//
-//
-//        return output;
-//    }
+    public String makeErrorMessage() {
+        int totalErrors = milk.getErrors() + bread.getErrors() + apples.getErrors() + cookies.getErrors();
+        String totalError = "" + totalErrors + " times";
+        String message = String.format("%s %16s %s", "Errors", "seen: ", totalError);
+        return message;
+    }
+
+    public String makeOutput(String string) {
+        output += milk.makeOutputString(string);
+        output += bread.makeOutputString(string);
+        output += cookies.makeOutputString(string);
+        output += apples.makeOutputString(string);
+        output += makeErrorMessage();
+        return output;
+    }
 
 
     public static void main(String[] args) throws Exception{
 
         Main main = new Main();
-        StringManipulator stringManipulator = new StringManipulator();
         String rawData = main.readRawDataToString();
 
-//        System.out.println(main.makeOutput(rawData));
+        System.out.println(main.makeOutput(rawData));
 
 
 
